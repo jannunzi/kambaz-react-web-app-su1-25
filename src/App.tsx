@@ -1,12 +1,20 @@
-import "./App.css";
+import { HashRouter, Navigate, Route, Routes } from "react-router";
+import Labs from "./Labs";
+import Kambaz from "./Kambaz";
+import Project from "./Project";
 
 function App() {
   return (
-    <>
+    <HashRouter>
       <div>
-        <h1>Welcome to Web Dev</h1>
+        <Routes>
+          <Route path="/" element={<Navigate to="/Labs" />} />
+          <Route path="/Kambaz/*" element={<Kambaz />} />
+          <Route path="/Project" element={<Project />} />
+          <Route path="/Labs/*" element={<Labs />} />
+        </Routes>
       </div>
-    </>
+    </HashRouter>
   );
 }
 

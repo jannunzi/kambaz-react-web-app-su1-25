@@ -1,31 +1,34 @@
+import { useParams } from "react-router";
+import * as db from "../../Database";
+import { ListGroup } from "react-bootstrap";
+import { BsGripVertical } from "react-icons/bs";
 export default function Modules() {
+  const { cid } = useParams();
+  const modules = db.modules;
   return (
-    <div>
-      {/* Implement Collapse All button, View Progress button, etc. */}
-      <ul id="wd-modules">
-        <li className="wd-module">
-          <div className="wd-title">Week 1</div>
-          <ul className="wd-lessons">
-            <li className="wd-lesson">
-              <span className="wd-title">LEARNING OBJECTIVES</span>
-              <ul className="wd-content">
-                <li className="wd-content-item">Introduction to the course</li>
-                <li className="wd-content-item">
-                  Learn what is Web Development
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li className="wd-module">
-          <div className="wd-title">Week 2</div>
-          <ul className="wd-lessons">
-            <li className="wd-lesson">
-              <span className="wd-title">LEARNING OBJECTIVES</span>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
+    <ListGroup id="wd-modules" className="rounded-0">
+      {modules
+        .filter((module: any) => module.course === cid)
+        .map((module: any) => (
+          <ListGroup.Item className="wd-module ...">
+            <div className="wd-title ...">
+              <BsGripVertical className="me-2 fs-3" />
+              {module.name}
+              {/* <ModuleControlButtons /> */}
+            </div>
+            {module.lessons && (
+              <ListGroup className="wd-lessons rounded-0">
+                {module.lessons.map((lesson: any) => (
+                  <ListGroup.Item className="wd-lesson p-3 ps-1">
+                    <BsGripVertical className="me-2 fs-3" />
+                    {lesson.name}
+                    {/* <LessonControlButtons /> */}
+                  </ListGroup.Item>
+                ))}
+              </ListGroup>
+            )}
+          </ListGroup.Item>
+        ))}
+    </ListGroup>
   );
 }

@@ -13,6 +13,9 @@ export default function TOC() {
         <Link to="/Labs/Lab3">Lab 3</Link>
       </li>
       <li>
+        <Link to="/Labs/Lab4">Lab 4</Link>
+      </li>
+      <li>
         <Link to="/Kambaz">Kambaz</Link>
       </li>
     </ul>
